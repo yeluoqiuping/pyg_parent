@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.pyg.cart.service.CartService;
 import com.pyg.pojogroup.Cart;
 import entity.Result;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,6 +42,10 @@ public class CartController {
     public List<Cart> findCartList(){
         //1.从浏览器的cookie中取出购物车列表
         String cartList_string = CookieUtil.getCookieValue(request, "cartList", "utf-8");
+
+        if (StringUtils.isEmpty(cartList_string)){
+            cartList_string = "[]";
+        }
 
         List<Cart> cartList = JSON.parseArray(cartList_string, Cart.class);
         return cartList;
