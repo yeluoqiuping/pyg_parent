@@ -27,10 +27,11 @@ public class CartServiceImpl implements CartService {
     public List<Cart> addGoodsToCartList(List<Cart> cartList, Long itemId, Integer num) {
         //1.根据商品SKU ID查询SKU商品信息
         TbItem item = itemMapper.selectByPrimaryKey(itemId);
+
         if (item==null){
             throw new RuntimeException("商品不存在");
         }
-        if(item.getStatus().equals("1")){
+        if(!item.getStatus().equals("1")){
             throw new RuntimeException("商品状态无效");
         }
         //2.获取商家ID
