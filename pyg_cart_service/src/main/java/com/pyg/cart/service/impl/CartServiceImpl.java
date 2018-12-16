@@ -1,5 +1,6 @@
 package com.pyg.cart.service.impl;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.pyg.cart.service.CartService;
 import com.pyg.mapper.TbItemMapper;
 import com.pyg.pojo.TbItem;
@@ -17,6 +18,7 @@ import java.util.List;
  * @date 2018-12-16 09:30
  * @description
  */
+@Service
 public class CartServiceImpl implements CartService {
 
     @Autowired
